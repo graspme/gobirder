@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GoBirder DB Dump</title>
+		<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 3px;
+		}
+		th {
+			text-align: left;
+		}
+		table#t01 tr:nth-child(even) {
+			background-color: #eee;
+		}
+		table#t01 tr:nth-child(odd) {
+		   background-color: #fff;
+		}
+		table#t01 th {
+			background-color: black;
+			color: white;
+		}
+		caption {
+			text-align: center;
+			margin-bottom: 5px;
+			text-transform: uppercase;
+			font-size: 160%;
+			padding: 5px;
+			letter-spacing: 10px;
+			font-weight: bold;
+		}
+		table.center {
+			margin-left:auto; 
+			margin-right:auto;
+		}
+	</style>
+<script>
+	var req = new XMLHttpRequest();
+	req.open('GET', document.location, false);
+	req.send(null);
+	var data = req.getResponseHeader("dbdata");
+	var rows = data.split ("#");
+	var sciNames = [];
+	var commonNames = [];
+	var classification = [];
+	var behaviour = [];
+	var plumage = [];
+	var size = [];
+	var index = [];
+	var cols = rows[0].split (";");
+	for (var i = 0; i < rows.length ; i++ )
+	{
+		var fields = rows[i].split (";");
+		//console.log (fields);
+		commonNames[i] = fields[0];
+		sciNames[i] = fields[1];
+		classification[i] = fields[2];
+		behaviour[i] = fields[3];
+		plumage[i] = fields[4];
+		size[i] = fields[5];
+		index[i] = i + 1;
+	}
+	var header = new Array();
+	header.push (["S.No.", "Common Name", "Scientific Name", "Classification", "Behaviour", "Plumage", "Size"]);
+	function myFunction(value) 
+	{
+		var tablearea = document.getElementById("datatable");
+		//Add the data rows
+		for (var i = 0; i < rows.length + 1 ; i++ )
+		{
+			var tr = tablearea.insertRow(i);
+			if (i == 0)
+			{
+				for (var j = 0; j < cols.length + 1 ; j++ )
+				{
+					var cell = tr.insertCell(j);
+					cell.innerHTML = (header[0][j]).bold();
+					cell.bgColor = "black";
+					cell.style.color = "white";
+				}
+				continue;
+			}
+			var cellidx = tr.insertCell(0);
+			cellidx.innerHTML = i;
+			var cell0 = tr.insertCell(1);
+			cell0.innerHTML = commonNames[i-1];
+			var cell1 = tr.insertCell(2);
+			cell1.innerHTML = sciNames[i-1];
+			var cell2 = tr.insertCell(3);
+			cell2.innerHTML = classification[i-1];
+			var cell3 = tr.insertCell(4);
+			cell3.innerHTML = behaviour[i-1];
+			var cell4 = tr.insertCell(5);
+			cell4.innerHTML = plumage[i-1];
+			var cell5 = tr.insertCell(6);
+			cell5.innerHTML = size[i-1];
+		}
+	}
+</script>
+</head>
+<body onload="myFunction()">	
+<form action="/feedBirds?selectedBird=selBird" method="GET" enctype="multipart/form-data">
+	<table id="datatable" style="width:60%;float:left;" class="center">
+	<caption>GoBirder ===  Data Dump</caption>
+
+	<table id="plumagetable" style="width:10%;float:right;" class="center">
+	<tr>
+		<td>1</td>
+		<td>Black</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Grey</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>White</td>
+	</tr>
+	<tr>
+		<td>8</td>
+		<td>Buff/Brown</td>
+	</tr>
+	<tr>
+		<td>16</td>
+		<td>Red/Rufous</td>
+	</tr>
+	<tr>
+		<td>32</td>
+		<td>Yellow</td>
+	</tr>
+	<tr>
+		<td>64</td>
+		<td>Olive/Green</td>
+	</tr>
+	<tr>
+		<td>128</td>
+		<td>Blue</td>
+	</tr>
+	<tr>
+		<td>256</td>
+		<td>Orange</td>
+	</tr>
+	<table id="behaviourtable" style="width:15%;float:right;" class="center">
+	<tr>
+		<td>1</td>
+		<td>Human Habitation</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Swimming or Wading</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>On the ground</td>
+	</tr>
+	<tr>
+		<td>8</td>
+		<td>In trees or bushes</td>
+	</tr>
+	<tr>
+		<td>16</td>
+		<td>On a fence or wire</td>
+	</tr>
+	<tr>
+		<td>32</td>
+		<td>Souring or flying</td>
+	</tr>
+	<table id="sizetable" style="float:right;" class="center">
+	<tr>
+		<td>0</td>
+		<td>10</td>
+		<td>Purple rumped Sunbird or smaller</td>
+	</tr>
+	<tr>
+		<td>10</td>
+		<td>23</td>
+		<td>Between Sunbird and Indian Myna</td>
+	</tr>
+	<tr>
+		<td>23</td>
+		<td>30</td>
+		<td>Indian Myna</td>
+	</tr>
+	<tr>
+		<td>30</td>
+		<td>43</td>
+		<td>Between Myna and Crow</td>
+	</tr>
+	<tr>
+		<td>43</td>
+		<td>43</td>
+		<td>Crow</td>
+	</tr>
+	<tr>
+		<td>43</td>
+		<td>150</td>
+		<td>Between Crow and Spot billed Pelican</td>
+	</tr>
+	<tr>
+		<td>150</td>
+		<td>255</td>
+		<td>Spot billed Pelican size or Bigger</td>
+	</tr>
+</form>
+<br>
+
+</body>
+</html>

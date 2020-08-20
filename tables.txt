@@ -1,0 +1,69 @@
+create database birdDB;
+
+use birdDB;
+
+CREATE TABLE `X_birds` (
+`birdId` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+`CommonName` VARCHAR(128) NOT NULL, 
+`ScientificName` VARCHAR(128) NOT NULL,
+`Classification` VARCHAR(128) NOT NULL,
+`Behaviour` TINYINT NOT NULL,
+`Plumage` SMALLINT UNSIGNED NOT NULL,
+`Size` SMALLINT NOT NULL,
+PRIMARY KEY (`birdId`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 ;
+
+CREATE TABLE X_birdDescription (
+`birdDescId` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, 
+`birdId` SMALLINT UNSIGNED NOT NULL,
+`Description` VARCHAR (1024) NOT NULL,
+`Pictures` VARCHAR (1024) NOT NULL,
+`Sounds` VARCHAR (256) NOT NULL,
+`DistributionMap` VARCHAR (256) NOT NULL,
+PRIMARY KEY (`birdDescId`),
+FOREIGN KEY (`birdId`) REFERENCES X_birds(`birdId`)
+)ENGINE=InnoDB;
+
+
+CREATE TABLE X_birdPlumage (
+`bitPosition` SMALLINT UNSIGNED NOT NULL, 
+`Colour` VARCHAR(16) NOT NULL
+)ENGINE=InnoDB;
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (1, "BLACK");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (2, "GREY");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (4, "WHITE");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (8, "BUFF/BROWN");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (16, "RED/RUFOUS");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (32, "YELLOW");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (64, "OLIVE/GREEN");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (128, "BLUE");
+INSERT INTO X_birdPlumage (`bitPosition`, Colour) VALUES (256, "ORANGE");
+
+
+CREATE TABLE X_birdBehaviour(
+`bitPosition` TINYINT NOT NULL, 
+`Behavior` VARCHAR(64)
+)ENGINE=InnoDB;
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (1, "Human Habitation");
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (2, "Swimming or Wading");
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (4, "On the ground");
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (8, "In trees or bushes");
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (16, "On a fence or wire");
+INSERT INTO X_birdBehaviour (`bitPosition`, `Behavior`) VALUES (32, "Souring or flying");
+
+
+CREATE TABLE X_birdSizes (
+`sizeId` TINYINT UNSIGNED NOT NULL,
+`lowerLimit` TINYINT UNSIGNED NOT NULL,
+`upperLimit` TINYINT UNSIGNED NOT NULL,
+`comparableBird` VARCHAR(64) NOT NULL
+)ENGINE=InnoDB;
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (1, 0, 10, "Purple rumped Sunbird or smaller");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (2, 10, 23, "Between Sunbird and Indian Myna");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (3, 23, 30, "Indian Myna");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (4, 30, 43, "Between Myna and Crow");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (5, 43, 43, "Crow");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (6, 43, 150, "Between Crow and Spot billed Pelican");
+INSERT INTO X_birdSizes (`sizeId`, `lowerLimit`, `upperLimit`, `comparableBird`) VALUES (7, 150, 255, "Spot billed Pelican size or Bigger");
+
+

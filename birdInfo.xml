@@ -1,0 +1,35 @@
+<bird common="INDIAN GOLDEN ORIOLE" scientific="" size="25" usuallyseen=""> 
+<!-- size in Centimeters -->
+<!-- usuallyseen can be flying, soaring, foraging on ground, bushes, tree tops-->
+<!--body props description-->
+<!--lower, upper, throat can take values of plain, striated, streaked etc-->
+<!--wings can take values of normal, long and ??-->
+<!--crest can take values of yes/no-->
+<!--beak can take values of different sizes like small, medium, long, thick, open etc-->
+
+	<male>
+		<bodycolor eyering="black" supercilium="" eyestrip="black" forehead="gold,yellow" crest="" lores="" crown="gold,yellow" nape="gold,yellow" back="gold,yellow" rump="" wings="black" tail="black" vent="gold,yellow" belly="gold,yellow" breast="gold,yellow" throat="gold,yellow" beak="yellow,orange,red"/>
+		<bodyprops lower="plain" upper="plain" throat="plain" wings="normal" crest="no" beak="medium"/>
+	</male>
+	<female>
+		<bodycolor eyering="black" supercilium="" eyestrip="black" forehead="yellow,green" crest="" lores="" crown="yellow,green" nape="yellow,green" back="yellow,green" rump="" wings="brown,green,olive" tail="yellow,green,olive" vent="yellow,green" belly="white" breast="white" throat="yellow,green" beak="yellow,orange,red"/>
+		<bodyprops lower="streaked" upper="plain" throat="plain" wings="normal" crest="no" beak="medium"/>
+	</female>
+
+<!-- What to do about Juveniles -->
+<!-- they are similar to female -->
+
+<!--region description
+summer/winter can take values of N, NE, S, SW, C
+	-->
+	<region country="IN" summer="N,NE,C" winter="S,SW"/>
+
+<!--relative/absolute paths-->
+	<media>
+		<photo src="photo1.jpg"/>
+		<photo src="photo2.jpg"/>
+		<photo src="photo3.jpg"/>
+		<audio src="audio1.wav"/>
+		<audio src="audio2.wav"/>
+	</media>
+</bird>
